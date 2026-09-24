@@ -1319,6 +1319,13 @@
       "
       aria-hidden="true"
     ></div>
+    <!-- Local audio: place the file 'O Teu Chamado - IGREJA APOSTÓLICA.mp3' in the site root -->
+    <audio
+      id="localAudio"
+      src="O Teu Chamado - IGREJA APOSTÓLICA.mp3"
+      preload="auto"
+      aria-hidden="true"
+    ></audio>
     <a
       class="wa"
       href="https://wa.me/5561981035447?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%203%C2%BA%20Encontro%20de%20Jovens."
@@ -1482,125 +1489,48 @@
       } else {
         revealTargets.forEach((el) => el.classList.add("is-visible"));
       }
-      // O navegador pode bloquear áudio automático. Gerenciador mais robusto do player YouTube.
-      let playerReady = false,
-        player = null,
-        autoplayTried = false,
-        autoplayRequested = true; // try autoplay on load (will play muted if browser blocks sound)
+      // Gerenciador simples de áudio local
+      const localAudio = document.getElementById("localAudio");
+      const musicToggleBtn = document.getElementById("musicToggle");
 
-      function loadYT() {
-        if (window.YT && window.YT.Player) {
-          createPlayer();
-          return;
-        }
-        if (!document.getElementById("yt-api")) {
-          const s = document.createElement("script");
-          s.id = "yt-api";
-          s.src = "https://www.youtube.com/iframe_api";
-          // detect network blocking via onerror
-          s.onload = () => {};
-          s.onerror = () => {
-            // mark blocked so UI can fallback
-            window._ytBlocked = true;
-            showPlayerFallback();
-          };
-          document.head.appendChild(s);
-        }
+      function updateMusicButton() {
+        if (!musicToggleBtn) return;
+        if (localAudio && !localAudio.paused)
+          musicToggleBtn.textContent = "Ⅱ Pausar hino";
+        else musicToggleBtn.textContent = "▶ Ouvir hino";
       }
 
-      function showPlayerFallback() {
-        const wrap = document.querySelector(".hero .wrap");
-        if (!wrap) return;
-        if (wrap.querySelector(".player-fallback")) return;
-        const el = document.createElement("div");
-        el.className = "player-fallback";
-        el.innerHTML =
-          '<strong>Áudio indisponível</strong><span>— parece que o player foi bloqueado pelo navegador ou extensão. <button id="trySoundBtn" class="btn" type="button">Tentar ouvir</button></span>';
-        wrap.insertBefore(el, wrap.querySelector(".hero-actions"));
-        const tryBtn = document.getElementById("trySoundBtn");
-        if (tryBtn)
-          tryBtn.addEventListener("click", () => {
-            autoplayRequested = true;
-            loadYT();
-            tryBtn.textContent = "Tentando...";
-          });
-      }
-
-      function createPlayer() {
-        if (playerReady) return;
-        playerReady = true;
-        player = new YT.Player("ytPlayer", {
-          height: "1",
-          width: "1",
-          videoId: "fwS0ge8o2IA",
-          playerVars: { autoplay: 1, playsinline: 1, rel: 0 },
-          events: {
-            onReady: (event) => {
-              autoplayTried = true;
-              if (autoplayRequested) {
-                try {
-                  // Try to play unmuted first (may be blocked by autoplay policies).
-                  event.target.unMute && event.target.unMute();
-                  event.target.playVideo && event.target.playVideo();
-                  const b = document.getElementById("musicToggle");
-                  if (b) b.textContent = "Ⅱ Pausar hino";
-                } catch (err) {
-                  try {
-                    // Fallback: start muted so audio at least begins.
-                    event.target.mute && event.target.mute();
-                    event.target.playVideo && event.target.playVideo();
-                    const b = document.getElementById("musicToggle");
-                    if (b) b.textContent = "Ⅱ Pausar hino (mudo)";
-                  } catch (err2) {
-                    // reprodução bloqueada pelo navegador
-                  }
-                }
-              }
-            },
-            onStateChange: (event) => {
-              const b = document.getElementById("musicToggle");
-              if (!b) return;
-              if (event.data === 1) b.textContent = "Ⅱ Pausar hino";
-              if (event.data === 2 || event.data === 0)
-                b.textContent = "▶ Ouvir hino";
-            },
-          },
-        });
-      }
-
-      window.onYouTubeIframeAPIReady = createPlayer;
+      // Tenta reproduzir ao carregar (pode ser bloqueado pelos navegadores sem interação)
       window.addEventListener("load", () => {
-        // request autoplay at load; player will try to play muted if needed
-        autoplayRequested = true;
-        loadYT();
+        if (localAudio) {
+          localAudio
+            .play()
+            .then(() => {
+              updateMusicButton();
+            })
+            .catch(() => {
+              // autoplay bloqueado — o botão permite iniciar manualmente
+              updateMusicButton();
+            });
+        }
       });
 
-      const musicToggleBtn = document.getElementById("musicToggle");
       if (musicToggleBtn)
         musicToggleBtn.addEventListener("click", () => {
-          // user gesture: toggle play/pause and unmute when starting
-          autoplayRequested = true;
-          loadYT();
-          const b = document.getElementById("musicToggle");
-          if (player && typeof player.getPlayerState === "function") {
-            try {
-              const state = player.getPlayerState();
-              if (state === 1) {
-                player.pauseVideo();
-                if (b) b.textContent = "▶ Ouvir hino";
-              } else {
-                // user clicked play: attempt to unmute and play with sound
-                player.unMute && player.unMute();
-                player.playVideo && player.playVideo();
-                if (b) b.textContent = "Ⅱ Pausar hino";
-              }
-              return;
-            } catch (err) {
-              // continue to loading state
-            }
+          if (!localAudio) return;
+          if (localAudio.paused) {
+            localAudio
+              .play()
+              .then(() => {
+                updateMusicButton();
+              })
+              .catch(() => {
+                alert("Toque na página para permitir reprodução de áudio.");
+              });
+          } else {
+            localAudio.pause();
+            updateMusicButton();
           }
-
-          if (b) b.textContent = "Carregando hino…";
         });
     </script>
   </body>
