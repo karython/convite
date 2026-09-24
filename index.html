@@ -1324,6 +1324,9 @@
       id="localAudio"
       src="O Teu Chamado - IGREJA APOSTÓLICA.mp3"
       preload="auto"
+      autoplay
+      playsinline
+      muted
       aria-hidden="true"
     ></audio>
     <a
@@ -1500,19 +1503,38 @@
         else musicToggleBtn.textContent = "▶ Ouvir hino";
       }
 
-      // Tenta reproduzir ao carregar (pode ser bloqueado pelos navegadores sem interação)
+      // Start muted to maximize autoplay chance, then unmute on first user gesture
       window.addEventListener("load", () => {
-        if (localAudio) {
-          localAudio
-            .play()
-            .then(() => {
-              updateMusicButton();
-            })
-            .catch(() => {
-              // autoplay bloqueado — o botão permite iniciar manualmente
-              updateMusicButton();
-            });
+        if (!localAudio) return;
+
+        try {
+          localAudio.muted = true;
+        } catch (e) {}
+
+        localAudio
+          .play()
+          .then(() => {
+            updateMusicButton();
+          })
+          .catch(() => {
+            updateMusicButton();
+          });
+
+        function onFirstGesture() {
+          try {
+            document.removeEventListener("pointerdown", onFirstGesture);
+            document.removeEventListener("keydown", onFirstGesture);
+            if (!localAudio) return;
+            localAudio.muted = false;
+            localAudio.play().catch(() => {});
+            updateMusicButton();
+          } catch (e) {}
         }
+
+        document.addEventListener("pointerdown", onFirstGesture, {
+          passive: true,
+        });
+        document.addEventListener("keydown", onFirstGesture, { passive: true });
       });
 
       if (musicToggleBtn)
