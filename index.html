@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#263525">
+<title>3º Encontro de Jovens | Filial Santa Maria-DF</title>
+<style>
+:root{--moss:#303f2c;--moss2:#1f2d20;--cream:#f5f1e7;--paper:#fffdf7;--gold:#c6b27a;--ink:#243024;--muted:#697164;--line:#dedbcc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit}.wrap{width:min(1120px,92%);margin:auto}.topbar{background:var(--moss2);color:#f9f5e9;padding:14px 0;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}.topbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hero{background:var(--moss2);color:#fffdf4;padding:84px 0 78px;position:relative;overflow:hidden;isolation:isolate}.hero-bg{position:absolute;inset:0;z-index:-2}.hero-bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.06);transition:opacity 1.5s ease,transform 8s ease}.hero-bg-slide.active{opacity:1;transform:scale(1)}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(20,31,20,.92),rgba(36,51,34,.72) 55%,rgba(22,33,22,.48));z-index:-1}.hero .wrap{animation:heroEnter .9s ease both}.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid #c6b27a55;border-radius:50%;right:-130px;top:-170px;box-shadow:0 0 0 45px #c6b27a12,0 0 0 90px #c6b27a0a}
+.eyebrow{color:var(--gold);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700}.hero h1{font-family:Georgia,serif;font-weight:500;line-height:1.04;font-size:clamp(2.8rem,7vw,5.7rem);max-width:780px;margin:18px 0}.hero h1 em{color:#d8c895;font-style:normal}.hero p{max-width:620px;color:#e4e6da;font-size:1.08rem}.verse{border-left:2px solid var(--gold);padding:8px 0 8px 18px;margin:28px 0;font-family:Georgia,serif;font-size:1.08rem;max-width:580px}.verse small{display:block;font-family:inherit;color:#d8c895;margin-top:8px;letter-spacing:.1em}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--gold);color:#202b1e;text-decoration:none;border:0;border-radius:3px;padding:13px 22px;font-weight:750;cursor:pointer;transition:.2s}.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.btn-outline{background:transparent;border:1px solid #d8c895;color:#fffdf4}.section{padding:72px 0}.section-head{text-align:center;max-width:720px;margin:0 auto 34px}.section-head .eyebrow{color:#78815e}.section h2{font:500 clamp(2rem,4vw,3.25rem)/1.1 Georgia,serif;margin:10px 0 14px;color:var(--moss2)}.section-head p{color:var(--muted);margin:0}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.info-card{background:var(--paper);border:1px solid var(--line);padding:24px;border-radius:6px}.info-card .num{font:italic 2.3rem Georgia;color:#a99a6b}.info-card h3{margin:8px 0;color:var(--moss)}.info-card p{margin:0;color:var(--muted);font-size:.95rem}
+.gallery{background:#e9e6da}.carousel{position:relative;max-width:960px;margin:auto}.slide{display:none;position:relative;border-radius:8px;overflow:hidden;min-height:360px;background:#263525}.slide.active{display:block}.slide img{width:100%;height:460px;max-height:58vw;min-height:300px;object-fit:cover;display:block;opacity:.75}.slide-caption{position:absolute;inset:auto 0 0;padding:55px 30px 26px;background:linear-gradient(transparent,rgba(18,27,18,.92));color:#fff}.slide-caption h3{font:500 2rem Georgia;margin:0 0 4px}.slide-caption p{margin:0;color:#e8e5d9}.carousel-controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:18px}.circle-btn{border:1px solid #9a9d8d;background:transparent;color:var(--moss);width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer}.dots{display:flex;gap:8px}.dot{width:8px;height:8px;border:0;border-radius:50%;background:#b9b8a9;cursor:pointer}.dot.active{background:var(--moss)}
+.schedule{display:grid;grid-template-columns:1fr 1fr;gap:22px}.day{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:26px}.day h3{font:500 1.8rem Georgia;color:var(--moss);margin:0}.day .date{color:#8b7a4d;font-weight:700;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase}.timeline{list-style:none;padding:0;margin:20px 0 0}.timeline li{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--line)}.timeline time{font-weight:750;color:var(--moss)}.timeline span{color:var(--muted)}
+.form-section{background:var(--moss2);color:#f7f3e8}.form-section .section-head h2{color:#fffdf4}.form-section .section-head p{color:#d1d5c9}.form-shell{max-width:850px;margin:auto;background:var(--paper);color:var(--ink);padding:clamp(22px,5vw,44px);border-radius:7px;box-shadow:0 16px 55px #0002}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label,.legend{font-size:.9rem;font-weight:750;color:var(--moss2)}input,select,textarea{font:inherit;padding:12px 13px;border:1px solid #d4d5c8;border-radius:4px;background:#fffef9;color:var(--ink);width:100%}input:focus,select:focus,textarea:focus{outline:2px solid #aeb68e;outline-offset:1px}.choice-row{display:flex;gap:18px;flex-wrap:wrap;padding:10px 0}.choice-row label{font-weight:500;display:flex;align-items:center;gap:8px;cursor:pointer}.choice-row input{width:auto;accent-color:var(--moss)}.conditional{margin-top:18px;padding:20px;background:#f0eee4;border:1px solid var(--line);border-radius:5px}.conditional h3{margin:0 0 12px;font:500 1.4rem Georgia;color:var(--moss)}.check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px 14px}.check-grid label{font-weight:500;display:flex;gap:8px;align-items:flex-start;font-size:.9rem}.check-grid input{width:auto;margin-top:5px;accent-color:var(--moss)}.form-note{font-size:.83rem;color:var(--muted)}.submit-row{margin-top:22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}.submit-row .btn{background:var(--moss);color:white}.success{display:none;margin-top:24px;padding:24px;border:1px solid #b5c09e;background:#edf1e4;border-radius:5px}.success h3{font:500 1.8rem Georgia;color:var(--moss);margin:0 0 8px}.mapbox{margin-top:18px;border-radius:5px;overflow:hidden;background:#e5e5d9;padding:24px}.mapbox p{margin-top:0}.contact{background:#e9e6da}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.contact-card{background:var(--paper);padding:26px;border:1px solid var(--line);border-radius:6px}.contact-card h3{font:500 1.5rem Georgia;color:var(--moss);margin-top:0}.contact-card a{color:var(--moss);font-weight:700}.footer{background:#182319;color:#d7dbcf;padding:24px 0;font-size:.84rem}.footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.wa{position:fixed;right:22px;bottom:22px;z-index:20;width:60px;height:60px;border-radius:50%;background:#287d4c;color:white;display:grid;place-items:center;text-decoration:none;box-shadow:0 5px 18px #0003;font-size:1.8rem;border:2px solid #fff9}.musicbar{position:fixed;left:18px;bottom:20px;z-index:19;background:#f9f6eb;border:1px solid #d6d0bd;border-radius:30px;padding:7px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 15px #0002;font-size:.8rem}.musicbar button{border:0;background:var(--moss);color:white;border-radius:20px;padding:8px 13px;cursor:pointer;font-weight:700}.musicbar span{color:var(--moss)}
+@keyframes heroEnter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 #c6b27a22}50%{box-shadow:0 0 0 10px #c6b27a00}}
+.btn{position:relative;overflow:hidden}.btn:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,#ffffff55 48%,transparent 70%);transform:translateX(-130%);transition:transform .7s}.btn:hover:after{transform:translateX(130%)}
+.info-card,.day,.contact-card{transition:transform .28s ease,box-shadow .28s ease}.info-card:hover,.day:hover,.contact-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px #1d2b1c13}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.is-visible{opacity:1;transform:translateY(0)}
+.hero .verse{animation:softFloat 6s ease-in-out infinite}.wa{animation:glowPulse 2.8s infinite}
+@media(max-width:700px){.hero{padding:62px 0}.info-grid,.schedule,.contact-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.check-grid{grid-template-columns:repeat(2,1fr)}.slide img{height:340px;max-height:none}.timeline{margin-top:12px}.topbar .wrap{font-size:.72rem}.musicbar{left:10px;bottom:12px}.wa{right:12px;bottom:14px;width:54px;height:54px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>Igreja Apostólica · Filial Santa Maria – DF</span><span>23 e 24 de janeiro de 2027</span></div></div>
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85')"></div>
+    <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1800&q=85')"></div>
+    <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1800&q=85')"></div>
+    <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1800&q=85')"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Convite especial · Música · Fé · Comunhão</div>
+    <h1>3º Encontro<br>de <em>Jovens</em></h1>
+    <p>Dois dias para fortalecer a fé, compartilhar talentos e celebrar a união da nossa juventude. Sua presença faz parte deste encontro.</p>
+    <div class="verse">“Antes que te formasse no ventre, te conheci; e, antes que saísses da madre, te santifiquei.”<small>JEREMIAS 1:5–8 · TEMA: UM CHAMADO, UMA GERAÇÃO</small></div>
+    <a class="btn" href="#confirmar">Confirmar presença <span aria-hidden="true">↗</span></a>
+    <a class="btn btn-outline" href="#programacao" style="margin-left:8px">Ver programação</a>
+  </div>
+</header>
+<section class="section" id="programacao"><div class="wrap">
+  <div class="section-head"><div class="eyebrow">Reserve as datas</div><h2>Programação do encontro</h2><p>Prévia de cronograma para organização. Horários e atividades estão sujeitos à confirmação da equipe organizadora.</p></div>
+  <div class="schedule">
+    <article class="day"><div class="date">Sábado · 23 de janeiro de 2027</div><h3>Primeiro dia</h3><ul class="timeline">
+      <li><time>08h30</time><span>Recepção e credenciamento</span></li><li><time>09h00</time><span>Abertura e oração</span></li><li><time>09h30</time><span>Louvor e reflexão bíblica</span></li><li><time>10h30</time><span>Ensaio / atividade musical</span></li><li><time>12h00</time><span>Intervalo para almoço</span></li><li><time>14h00</time><span>Integração entre filiais e atividades em grupo</span></li><li><time>16h00</time><span>Encerramento do dia</span></li>
+    </ul></article>
+    <article class="day"><div class="date">Domingo · 24 de janeiro de 2027</div><h3>Segundo dia</h3><ul class="timeline">
+      <li><time>08h30</time><span>Recepção e acolhimento</span></li><li><time>09h00</time><span>Oração e momento de louvor</span></li><li><time>09h30</time><span>Reflexão: “Antes que te formasse…”</span></li><li><time>10h30</time><span>Ensaio geral e preparação</span></li><li><time>12h00</time><span>Intervalo para almoço</span></li><li><time>14h00</time><span>Apresentação musical / momento especial</span></li><li><time>16h00</time><span>Agradecimentos e encerramento</span></li>
+    </ul></article>
+  </div>
+</div></section>
+<section class="section form-section" id="confirmar"><div class="wrap">
+  <div class="section-head"><div class="eyebrow">Sua presença é importante</div><h2>Confirme sua presença</h2><p>Preencha os dados abaixo para que a equipe possa organizar a participação de todos.</p></div>
+  <div class="form-shell">
+    <form id="rsvpForm">
+      <div class="form-grid">
+        <div class="field"><label for="nome">Nome completo *</label><input id="nome" name="nome" required placeholder="Como podemos chamar você?"></div>
+        <div class="field"><label for="filial">Filial *</label><input id="filial" name="filial" required placeholder="Ex.: Santa Maria – DF"></div>
+        <div class="field full"><span class="legend">Como você participa? *</span><div class="choice-row">
+          <label><input type="radio" name="participacao" value="Músico" required> Músico(a)</label>
+          <label><input type="radio" name="participacao" value="Corista" required> Corista</label>
+          <label><input type="radio" name="participacao" value="Outro participante" required> Outro participante</label>
+        </div></div>
+      </div>
+      <div class="conditional" id="musicoBox" hidden>
+        <h3>Qual instrumento você toca?</h3><p class="form-note">Marque todos os instrumentos que se aplicam.</p>
+        <div class="check-grid">
+          <label><input type="checkbox" name="instrumentos" value="Flautim">Flautim (piccolo)</label>
+          <label><input type="checkbox" name="instrumentos" value="Flauta transversal">Flauta transversal</label>
+          <label><input type="checkbox" name="instrumentos" value="Oboé">Oboé</label>
+          <label><input type="checkbox" name="instrumentos" value="Corne inglês">Corne inglês</label>
+          <label><input type="checkbox" name="instrumentos" value="Clarinete">Clarinete</label>
+          <label><input type="checkbox" name="instrumentos" value="Clarinete piccolo (Mib)">Clarinete piccolo (Mib)</label>
+          <label><input type="checkbox" name="instrumentos" value="Clarone / clarinete baixo">Clarone / clarinete baixo</label>
+          <label><input type="checkbox" name="instrumentos" value="Fagote">Fagote</label>
+          <label><input type="checkbox" name="instrumentos" value="Contrafagote">Contrafagote</label>
+          <label><input type="checkbox" name="instrumentos" value="Saxofone soprano">Saxofone soprano</label>
+          <label><input type="checkbox" name="instrumentos" value="Saxofone alto">Saxofone alto</label>
+          <label><input type="checkbox" name="instrumentos" value="Saxofone tenor">Saxofone tenor</label>
+          <label><input type="checkbox" name="instrumentos" value="Saxofone barítono">Saxofone barítono</label>
+          <label><input type="checkbox" name="instrumentos" value="Trompa">Trompa</label>
+          <label><input type="checkbox" name="instrumentos" value="Trompete">Trompete</label>
+          <label><input type="checkbox" name="instrumentos" value="Trombone">Trombone</label>
+          <label><input type="checkbox" name="instrumentos" value="Tuba">Tuba</label>
+          <label><input type="checkbox" name="instrumentos" value="Violino">Violino</label>
+          <label><input type="checkbox" name="instrumentos" value="Viola de arco">Viola de arco</label>
+          <label><input type="checkbox" name="instrumentos" value="Violoncelo">Violoncelo</label>
+          <label><input type="checkbox" name="instrumentos" value="Contrabaixo acústico">Contrabaixo acústico</label>
+          <label><input type="checkbox" name="instrumentos" value="Piano">Piano</label>
+          <label><input type="checkbox" name="instrumentos" value="Tímpanos">Tímpanos</label>
+          <label><input type="checkbox" name="instrumentos" value="Percussão">Percussão</label>
+          <label><input type="checkbox" name="instrumentos" value="Outro instrumento">Outro instrumento</label>
+        </div>
+      </div>
+      <div class="conditional" id="coristaBox" hidden>
+        <h3>Qual é a sua voz ou função?</h3>
+        <div class="choice-row">
+          <label><input type="radio" name="voz" value="Soprano">Soprano</label>
+          <label><input type="radio" name="voz" value="Contralto">Contralto</label>
+          <label><input type="radio" name="voz" value="Tenor">Tenor</label>
+          <label><input type="radio" name="voz" value="Baixo">Baixo</label>
+          <label><input type="radio" name="voz" value="Regente">Regente</label>
+        </div>
+      </div>
+      <div class="form-grid" style="margin-top:18px">
+        <div class="field"><label for="telefone">Telefone / WhatsApp (opcional)</label><input id="telefone" name="telefone" type="tel" placeholder="(61) 9xxxx-xxxx"></div>
+        <div class="field"><label for="presenca">Participará nos dois dias? *</label><select id="presenca" name="dias" required><option value="">Selecione</option><option>Sim, nos dois dias</option><option>Somente sábado (23/01)</option><option>Somente domingo (24/01)</option><option>Ainda não sei</option></select></div>
+        <div class="field full"><label for="observacoes">Observações (opcional)</label><textarea id="observacoes" name="observacoes" rows="3" placeholder="Alguma informação importante para a organização?"></textarea></div>
+      </div>
+      <p class="form-note">* Campos obrigatórios. Seus dados serão utilizados para organização do encontro.</p>
+      <div class="submit-row"><button class="btn" type="submit">Enviar confirmação <span aria-hidden="true">→</span></button><span class="form-note">Versão de demonstração: envio ao SheetMonkey ainda depende da URL do formulário.</span></div>
+    </form>
+    <div class="success" id="success" role="status" aria-live="polite">
+      <h3>Que alegria, <span id="welcomeName"></span>!</h3><p>Sua confirmação foi registrada nesta demonstração. A equipe da Filial Santa Maria – DF espera você no 3º Encontro de Jovens!</p>
+      <div class="mapbox"><p><strong>Local do encontro</strong><br>Consulte a localização no mapa:</p><a class="btn" href="https://maps.app.goo.gl/4wnwBkZwxWMgU8JA6" target="_blank" rel="noopener">Abrir localização no Google Maps ↗</a><p class="form-note" style="margin:14px 0 0">Para exibir o mapa incorporado diretamente nesta página, será necessário um endereço ou código de incorporação do local.</p></div>
+    </div>
+  </div>
+</div></section>
+<section class="section contact"><div class="wrap">
+  <div class="section-head"><div class="eyebrow">Fale com a organização</div><h2>Estamos à disposição</h2><p>Em caso de dúvidas sobre a programação ou sua participação, entre em contato.</p></div>
+  <div class="contact-grid">
+    <article class="contact-card"><h3>Contato</h3><p><strong>E-mail</strong><br><a href="mailto:karython.unai@gmail.com">karython.unai@gmail.com</a></p><p><strong>WhatsApp</strong><br><a href="https://wa.me/5561981035447" target="_blank" rel="noopener">(61) 98103-5447</a></p></article>
+    <article class="contact-card"><h3>Data e local</h3><p><strong>23 e 24 de janeiro de 2027</strong><br>Filial Santa Maria – DF</p><a href="https://maps.app.goo.gl/4wnwBkZwxWMgU8JA6" target="_blank" rel="noopener">Ver localização no Google Maps ↗</a></article>
+  </div>
+</div></section>
+<footer class="footer"><div class="wrap"><span>3º Encontro de Jovens · Igreja Apostólica · Filial Santa Maria – DF</span><span>“Uma geração que toca o céu” · Jeremias 1:5–8</span></div></footer>
+<div class="musicbar"><button id="musicToggle" type="button">▶ Ouvir hino</button><span>Hino do encontro</span></div>
+<div id="ytPlayer" style="position:fixed;width:1px;height:1px;left:-10px;bottom:0;overflow:hidden" aria-hidden="true"></div>
+<a class="wa" href="https://wa.me/5561981035447?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%203%C2%BA%20Encontro%20de%20Jovens." target="_blank" rel="noopener" aria-label="Falar com a organização pelo WhatsApp">✆</a>
+<script>
+const slides=[...document.querySelectorAll('.slide')], dotsBox=document.getElementById('dots');let current=0;
+slides.forEach((_,i)=>{const b=document.createElement('button');b.className='dot'+(i===0?' active':'');b.setAttribute('aria-label','Ir para imagem '+(i+1));b.addEventListener('click',()=>showSlide(i));dotsBox.appendChild(b)});
+function showSlide(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));[...dotsBox.children].forEach((d,i)=>d.classList.toggle('active',i===current))}
+document.getElementById('prev').addEventListener('click',()=>showSlide(current-1));document.getElementById('next').addEventListener('click',()=>showSlide(current+1));
+const radios=[...document.querySelectorAll('input[name="participacao"]')],musicoBox=document.getElementById('musicoBox'),coristaBox=document.getElementById('coristaBox');
+function updateParticipation(){const val=document.querySelector('input[name="participacao"]:checked')?.value;musicoBox.hidden=val!=='Músico';coristaBox.hidden=val!=='Corista';document.querySelectorAll('input[name="voz"]').forEach(x=>x.required=val==='Corista');}
+radios.forEach(r=>r.addEventListener('change',updateParticipation));
+document.getElementById('rsvpForm').addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const data=new FormData(form);document.getElementById('welcomeName').textContent=(data.get('nome')||'').trim().split(/\s+/)[0];document.getElementById('success').style.display='block';document.getElementById('success').scrollIntoView({behavior:'smooth',block:'center'});});
+// Fundo do cabeçalho: carrossel automático em transição suave.
+const heroSlides=[...document.querySelectorAll('.hero-bg-slide')];let heroIndex=0;
+if(heroSlides.length>1){setInterval(()=>{heroSlides[heroIndex].classList.remove('active');heroIndex=(heroIndex+1)%heroSlides.length;heroSlides[heroIndex].classList.add('active')},6500)}
+// Revelação progressiva dos blocos ao rolar a página.
+const revealTargets=document.querySelectorAll('.section-head,.info-card,.day,.contact-card,.form-shell');
+revealTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12});revealTargets.forEach(el=>observer.observe(el))}else{revealTargets.forEach(el=>el.classList.add('is-visible'))}
+// O navegador pode bloquear áudio automático. O player tenta iniciar ao abrir; o botão permite ativar/pausar manualmente.
+let playerReady=false,player=null,autoplayTried=false;
+function loadYT(){if(window.YT&&window.YT.Player){createPlayer();return}if(!document.getElementById('yt-api')){const s=document.createElement('script');s.id='yt-api';s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s)}}
+function createPlayer(){if(playerReady)return;playerReady=true;player=new YT.Player('ytPlayer',{height:'1',width:'1',videoId:'fwS0ge8o2IA',playerVars:{autoplay:1,playsinline:1,rel:0},events:{onReady:(event)=>{autoplayTried=true;event.target.playVideo();},onStateChange:(event)=>{const b=document.getElementById('musicToggle');if(event.data===1)b.textContent='Ⅱ Pausar hino';if(event.data===2||event.data===0)b.textContent='▶ Ouvir hino';}}})}
+window.onYouTubeIframeAPIReady=createPlayer;
+window.addEventListener('load',()=>{loadYT()});
+document.getElementById('musicToggle').addEventListener('click',()=>{loadYT();const b=document.getElementById('musicToggle');if(player&&player.playVideo){if(player.getPlayerState()===1){player.pauseVideo();b.textContent='▶ Ouvir hino'}else{player.unMute();player.playVideo();b.textContent='Ⅱ Pausar hino'}}else{b.textContent='Carregando hino…';setTimeout(()=>{if(player&&player.playVideo){player.unMute();player.playVideo();b.textContent='Ⅱ Pausar hino'}else b.textContent='▶ Tentar ouvir hino'},1300)}});
+</script>
+</body>
+</html>
