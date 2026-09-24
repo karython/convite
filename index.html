@@ -1404,7 +1404,19 @@
           // build payload mapped to friendly headers for SheetMonkey
           const payload = new FormData();
           const nome = form.querySelector("#nome")?.value || "";
-          const filial = form.querySelector("#filial")?.value || "";
+          const filialRaw = form.querySelector("#filial")?.value || "";
+          // Format filial to Title Case before sending (capitalize initials)
+          const formatFilial = (s) =>
+            (s || "")
+              .toLowerCase()
+              .split(/(\s+)/)
+              .map((part) =>
+                part.replace(/(^|[-\/\s])[\p{L}]/u, (m) => m.toUpperCase()),
+              )
+              .join("")
+              .replace(/\s+/g, " ")
+              .trim();
+          const filial = formatFilial(filialRaw);
           const participacao =
             form.querySelector('input[name="participacao"]:checked')?.value ||
             "";
