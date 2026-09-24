@@ -178,6 +178,24 @@
         color: #e4e6da;
         font-size: 1.08rem;
       }
+      .hero-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 18px;
+        flex-wrap: wrap;
+      }
+      .player-fallback {
+        background: #fff6f0;
+        border: 1px solid #e8c9b0;
+        color: var(--moss2);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+      }
       .verse {
         border-left: 2px solid var(--gold);
         padding: 8px 0 8px 18px;
@@ -803,12 +821,12 @@
             >JEREMIAS 1:5–8 · TEMA: UM CHAMADO, UMA GERAÇÃO</small
           >
         </div>
-        <a class="btn" href="#confirmar"
-          >Confirmar presença <span aria-hidden="true">↗</span></a
-        >
-        <a class="btn btn-outline" href="#programacao" style="margin-left: 8px"
-          >Ver programação</a
-        >
+        <div class="hero-actions">
+          <a class="btn" href="#confirmar"
+            >Confirmar presença <span aria-hidden="true">↗</span></a
+          >
+          <a class="btn btn-outline" href="#programacao">Ver programação</a>
+        </div>
       </div>
     </header>
     <section class="section" id="programacao">
@@ -1479,8 +1497,33 @@
           const s = document.createElement("script");
           s.id = "yt-api";
           s.src = "https://www.youtube.com/iframe_api";
+          // detect network blocking via onerror
+          s.onload = () => {};
+          s.onerror = () => {
+            // mark blocked so UI can fallback
+            window._ytBlocked = true;
+            showPlayerFallback();
+          };
           document.head.appendChild(s);
         }
+      }
+
+      function showPlayerFallback() {
+        const wrap = document.querySelector(".hero .wrap");
+        if (!wrap) return;
+        if (wrap.querySelector(".player-fallback")) return;
+        const el = document.createElement("div");
+        el.className = "player-fallback";
+        el.innerHTML =
+          '<strong>Áudio indisponível</strong><span>— parece que o player foi bloqueado pelo navegador ou extensão. <button id="trySoundBtn" class="btn" type="button">Tentar ouvir</button></span>';
+        wrap.insertBefore(el, wrap.querySelector(".hero-actions"));
+        const tryBtn = document.getElementById("trySoundBtn");
+        if (tryBtn)
+          tryBtn.addEventListener("click", () => {
+            autoplayRequested = true;
+            loadYT();
+            tryBtn.textContent = "Tentando...";
+          });
       }
 
       function createPlayer() {
