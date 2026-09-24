@@ -1388,7 +1388,9 @@
           'input[name="participacao"]:checked',
         )?.value;
         musicoBox.hidden = val !== "Músico";
-        coristaBox.hidden = val !== "Corista";
+        // show coristaBox for both "Corista" and "Músico" so a musician can also mark voice
+        coristaBox.hidden = val === "Outro participante";
+        // keep voz required only when explicitly marked as Corista
         document
           .querySelectorAll('input[name="voz"]')
           .forEach((x) => (x.required = val === "Corista"));
