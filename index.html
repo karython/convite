@@ -893,7 +893,7 @@
         <div class="form-shell">
           <form
             id="rsvpForm"
-            action="https://api.sheetmonkey.io/form/r93mefYgcvUqXuR81NJqN"
+            action="https://api.sheetmonkey.io/form/x4YsVsDviLhUjH3z8yYU4z"
             method="post"
           >
             <div class="form-grid">
@@ -1150,27 +1150,35 @@
               <div class="choice-row">
                 <label
                   ><input
-                    type="radio"
+                    type="checkbox"
                     name="voz"
                     value="Soprano"
                   />Soprano</label
                 >
                 <label
                   ><input
-                    type="radio"
+                    type="checkbox"
                     name="voz"
                     value="Contralto"
                   />Contralto</label
                 >
                 <label
-                  ><input type="radio" name="voz" value="Tenor" />Tenor</label
-                >
-                <label
-                  ><input type="radio" name="voz" value="Baixo" />Baixo</label
+                  ><input
+                    type="checkbox"
+                    name="voz"
+                    value="Tenor"
+                  />Tenor</label
                 >
                 <label
                   ><input
-                    type="radio"
+                    type="checkbox"
+                    name="voz"
+                    value="Baixo"
+                  />Baixo</label
+                >
+                <label
+                  ><input
+                    type="checkbox"
                     name="voz"
                     value="Regente"
                   />Regente</label
@@ -1408,8 +1416,9 @@
           ]
             .map((i) => i.value)
             .join(", ");
-          const voz =
-            form.querySelector('input[name="voz"]:checked')?.value || "";
+          const voz = [...form.querySelectorAll('input[name="voz"]:checked')]
+            .map((v) => v.value)
+            .join(", ");
           const telefone = form.querySelector("#telefone")?.value || "";
           const presenca = form.querySelector("#presenca")?.value || "";
           const observacoes = form.querySelector("#observacoes")?.value || "";
@@ -1434,12 +1443,23 @@
             const resp = await fetch(form.action, {
               method: "POST",
               body: payload,
-              headers: { Accept: "application/json" },
+              // remove forcing Accept to allow server default
             });
 
-            if (!resp.ok) throw new Error("network");
+            const text = await resp.text();
+            console.log(
+              "SheetMonkey response status:",
+              resp.status,
+              "body:",
+              text,
+            );
 
-            // success — show local success UI
+            if (!resp.ok) {
+              // server returned non-2xx
+              throw new Error("network");
+            }
+
+            // Consider success if 2xx; show UI and reset form
             document.getElementById("welcomeName").textContent = (nome || "")
               .trim()
               .split(/\s+/)[0];
@@ -1449,11 +1469,15 @@
               .scrollIntoView({ behavior: "smooth", block: "center" });
             form.reset();
           } catch (err) {
+            console.error("Form submit failed:", err);
             // fallback: submit by normal form POST (navigation) if CORS/network prevents AJAX
             try {
               form.submit();
             } catch (err2) {
-              alert("Erro ao enviar formulário. Tente novamente mais tarde.");
+              console.error("Form.submit fallback failed:", err2);
+              alert(
+                "Erro ao enviar formulário. Verifique o console para mais detalhes.",
+              );
             }
           } finally {
             if (submitBtn) {
